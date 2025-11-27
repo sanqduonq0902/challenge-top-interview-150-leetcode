@@ -15,7 +15,7 @@ function zigzagLevelOrder(root: TreeNode | null): number[][] {
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
     }
-
+    
     if (!isLeft) level.reverse();
     result.push(level);
     isLeft = !isLeft;
