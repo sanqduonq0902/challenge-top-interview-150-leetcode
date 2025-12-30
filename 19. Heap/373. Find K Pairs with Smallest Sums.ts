@@ -41,7 +41,7 @@ class MyMinHeap {
     }
 
     private bubbleUp(i: number): void {
-        while (i > 0 && this.heap[i] < this.heap[this.parent(i)]) {
+        while (i > 0 && this.heap[i].sum < this.heap[this.parent(i)].sum) {
             [this.heap[this.parent(i)], this.heap[i]] = [this.heap[i], this.heap[this.parent(i)]];
             i = this.parent(i);
         }
@@ -83,14 +83,14 @@ function kSmallestPairs(nums1: number[], nums2: number[], k: number): number[][]
     };
 
     while (k-- > 0 && heap.size() > 0) {
-        const node = this.heap.dequeue()!;
-        answer.enqueue([nums1[node.i], nums2[node.j]]);
+        const node = heap.dequeue()!;
+        answer.push([nums1[node.i], nums2[node.j]]);
 
         if (node.j + 1 < nums2.length) {
             heap.enqueue({
                 sum: nums1[node.i] + nums2[node.j + 1],
                 i: node.i,
-                j: node.j
+                j: node.j + 1
             });
         };
     }
